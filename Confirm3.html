@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #body3 {
+            border: 10px solid #007698;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-button {
+            background-color: #007698;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .center-button:hover {
+            background-color: #005f7a;
+            transform: scale(1.05); 
+        }
+
+        .center-button:active {
+            transform: scale(0.95);
+        }
+
+        #rideSummary {
+            background-color: #fcb040;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        #rideSummary h2 {
+            text-align: center;
+        }
+
+        .seahawks-logo {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+        }
+    </style>
+</head>
+<body id="body3">
+    <center>
+        <h1>Confirm Your Booking</h1>
+
+        <div id="rideSummary">
+            <h2>Ride Details</h2>
+            <p><strong>Current Location:</strong> <span id="displayCurrentLocation"></span></p>
+            <p><strong>Destination:</strong> <span id="displayDestination"></span></p>
+            <p><strong>Number of Kids:</strong> <span id="displayNumKids"></span></p>
+            <p><strong>Selected Driver:</strong> <span id="displayDriver"></span></p>
+        </div>
+
+        <br>
+        <button class="center-button" onclick="Confirmation3()">Confirm</button>
+        <img class="seahawks-logo" src="Screen Shot 2025-02-19 at 6.25.28 PM.png" alt="Seahawks Logo">
+    </center>
+
+    <script>
+        document.getElementById("displayCurrentLocation").innerText = localStorage.getItem("currentLocation") || "N/A";
+        document.getElementById("displayDestination").innerText = localStorage.getItem("destination") || "N/A";
+        document.getElementById("displayNumKids").innerText = localStorage.getItem("numKids") || "N/A";
+        document.getElementById("displayDriver").innerText = localStorage.getItem("driver") || "N/A";
+
+        function Confirmation3() {
+            localStorage.clear();
+            window.location.href = "ThankYou.html"; 
+        }
+    </script>
+</body>
+</html>

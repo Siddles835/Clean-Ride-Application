@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #body2 {
+            border: 10px solid #007698;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-button {
+            background-color: #007698;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .center-button:hover {
+            background-color: #005a70;
+            transform: scale(1.05);
+        }
+
+        .center-button:active {
+            transform: scale(0.95);
+        }
+
+        .seahawks-logo {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+        }
+    </style>
+</head>
+<body id="body2" onload="loadData()">
+    <center>
+        <h1>Would You Like To Confirm This Booking?</h1>
+        
+        <h3>School District:</h3>
+        <p id="schoolDistrictDisplay"></p>
+
+        <h3>Selected Routes:</h3>
+        <ul id="routeList"></ul>
+
+        <h3>Selected Rideshare Times:</h3>
+        <ul id="rideshareList"></ul>
+
+        <button class="center-button" onclick="Confirmation2()">Confirm</button>
+
+        <img class="seahawks-logo" src="Screen Shot 2025-02-19 at 6.25.28 PM.png" alt="Seahawks Logo">
+    </center>
+
+    <script>
+        function loadData() {
+            const schoolDistrict = localStorage.getItem("schoolDistrict");
+            const selectedRoutes = JSON.parse(localStorage.getItem("selectedRoutes")) || [];
+            const selectedRideshare = JSON.parse(localStorage.getItem("selectedRideshare")) || [];
+
+            document.getElementById("schoolDistrictDisplay").innerText = schoolDistrict || "Not selected";
+
+            const routeList = document.getElementById("routeList");
+            routeList.innerHTML = "";
+            selectedRoutes.forEach(route => {
+                let li = document.createElement("li");
+                li.innerText = route;
+                routeList.appendChild(li);
+            });
+
+            const rideshareList = document.getElementById("rideshareList");
+            rideshareList.innerHTML = "";
+            selectedRideshare.forEach(rideshare => {
+                let li = document.createElement("li");
+                li.innerText = rideshare;
+                rideshareList.appendChild(li);
+            });
+        }
+
+        function Confirmation2() {
+            window.location.href = "nextPage.html"; 
+        }
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>

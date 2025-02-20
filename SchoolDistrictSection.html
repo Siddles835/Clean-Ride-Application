@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School District Driver Request</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        #body5 {
+            background-color: #f8f9fa;
+            border: 10px solid #007698;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            max-width: 500px;
+            border: 10px solid #fcb040;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .seahawks-logo {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+        }
+    </style>
+</head>
+<body id="body5">
+<center>
+    <script>
+        function saveAndGoToConfirmation(event) {
+            event.preventDefault(); 
+
+            const districtArea = document.getElementById("districtArea").value;
+            const numDrivers = document.getElementById("numDrivers").value;
+
+            let selectedSchools = [];
+            document.querySelectorAll("input[type='checkbox']:checked").forEach(checkbox => {
+                selectedSchools.push(checkbox.nextElementSibling.innerText);
+            });
+
+            localStorage.setItem("districtArea", districtArea);
+            localStorage.setItem("numDrivers", numDrivers);
+            localStorage.setItem("selectedSchools", JSON.stringify(selectedSchools));
+
+            window.location.href = "confirm.html";
+        }
+    </script>
+
+    <div id="districts" class="container d-flex justify-content-center">
+        <div class="login-container">
+            <h2 class="text-center">School District Driver Request</h2>
+            
+            <form onsubmit="saveAndGoToConfirmation(event)">
+                <div class="mb-3">
+                    <label for="districtArea" class="form-label">Enter School District Area</label>
+                    <input type="text" class="form-control" id="districtArea" placeholder="e.g., Redmond" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="numDrivers" class="form-label">Number of Bus Drivers Needed</label>
+                    <input type="number" class="form-control" id="numDrivers" min="1" max="100" required>
+                </div>
+
+                <fieldset class="mb-3">
+                    <legend>Select Schools</legend>
+
+                    <label class="form-label fw-bold">Elementary Schools</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="greenwoodElem">
+                        <label class="form-check-label" for="greenwoodElem">Ella Baker Elementary</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sunsetElem">
+                        <label class="form-check-label" for="sunsetElem">Wilder Elementary</label>
+                    </div>
+
+                    <label class="form-label fw-bold mt-2">Middle Schools</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hilltopMiddle">
+                        <label class="form-check-label" for="hilltopMiddle">Redmond Middle</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="lakeviewMiddle">
+                        <label class="form-check-label" for="lakeviewMiddle">Evergreen Middle</label>
+                    </div>
+
+                    <label class="form-label fw-bold mt-2">High Schools</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="ridgeHigh">
+                        <label class="form-check-label" for="ridgeHigh">Redmond High</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="summitHigh">
+                        <label class="form-check-label" for="summitHigh">Eastlake High</label>
+                    </div>
+                </fieldset>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <img class="seahawks-logo" src="Screen Shot 2025-02-19 at 6.25.28 PM.png" alt="Seahawks Logo">
+</center>
+</body>
+</html>
